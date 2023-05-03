@@ -17,7 +17,7 @@ def GetFreePort(minPort: int = 1024, maxPort: int = 65535):
 
         with contextlib.closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as potentialPort: 
             try: 
-                potentialPort.bind(('10.182.0.2', i)) 
+                potentialPort.bind(('localhost', i)) 
                 potentialPort.close() 
                 print("Server listening on port",i) 
 
@@ -61,7 +61,7 @@ def CreateTCPSocket() -> socket.socket:
     #tcpPort = defaultPort 
     tcpPort = GetFreePort() 
     print("TCP Port:",tcpPort) 
-    tcpSocket.bind(('10.182.0.2', tcpPort)) 
+    tcpSocket.bind(('localhost', tcpPort)) 
     return tcpSocket 
 
 def LaunchTCPThreads(): 

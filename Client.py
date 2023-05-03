@@ -17,7 +17,7 @@ maxPacketSize = 1024
 
 defaultPort = 5050 #Change this to your expected port 
 
-serverIP = '10.182.0.2' #Change this to your instance IP 
+serverIP = 'localhost' #Change this to your instance IP 
 
  
  

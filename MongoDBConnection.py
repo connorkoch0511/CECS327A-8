@@ -52,7 +52,7 @@ def QueryDatabase() -> list:
         RoadC = 0
 
 
-        for document in oldDocuments:
+        for document in currentDocuments:
             if(list(document['payload'].keys())[2] == 'Traffic Sensor 91'):
                 RoadA += document['payload']['Traffic Sensor 91']
             elif(list(document['payload'].keys())[2] == 'Traffic Sensor 92'):
@@ -60,9 +60,9 @@ def QueryDatabase() -> list:
             elif(list(document['payload'].keys())[2] == 'Traffic Sensor 93'):
                 RoadC += document['payload']['Traffic Sensor 93']
         
-        RoadA = RoadA / len(oldDocuments)
-        RoadB = RoadB / len(oldDocuments)
-        RoadC = RoadC / len(oldDocuments)
+        RoadA = RoadA / len(currentDocuments)
+        RoadB = RoadB / len(currentDocuments)
+        RoadC = RoadC / len(currentDocuments)
 
         #Return that sensor data as a list 
         return [int(RoadA), int(RoadB), int(RoadC)] 

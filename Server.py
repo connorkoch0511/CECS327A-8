@@ -9,7 +9,7 @@ import random
 import sys 
 
 maxPacketSize = 1024 
-defaultPort = 5050 #TODO: Set this to your preferred port 
+defaultPort = 5050 #Set this to your preferred port 
 
 def GetFreePort(minPort: int = 1024, maxPort: int = 65535): 
     for i in range(minPort, maxPort): 

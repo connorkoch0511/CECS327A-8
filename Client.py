@@ -15,9 +15,9 @@ import errno
 
 maxPacketSize = 1024 
 
-defaultPort = 5050 # TODO: Change this to your expected port 
+defaultPort = 5050 #Change this to your expected port 
 
-serverIP = 'localhost' #TODO: Change this to your instance IP 
+serverIP = 'localhost' #Change this to your instance IP 
 
  
  
@@ -50,15 +50,15 @@ while clientMessage != "exit":
  
  
 
-    #TODO: Send the message to your server 
+    #Send the message to your server 
 
     tcpSocket.sendall(bytes(clientMessage, 'utf-8')) 
 
-    #TODO: Receive a reply from the server for the best highway to take 
+    #Receive a reply from the server for the best highway to take 
 
     m = tcpSocket.recv(64).decode('utf-8') 
 
-    #TODO: Print the best highway to take 
+    #Print the best highway to take 
 
     print('Server says best highway to take is ' + m) 
 

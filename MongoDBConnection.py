@@ -8,7 +8,7 @@ import certifi
 
 DBName = "test" #Use this to change which Database we're accessing 
 connectionURL = "mongodb+srv://connorkoch0511:SixersFan@cecs327assignment7.j3sdksp.mongodb.net/?retryWrites=true&w=majority" #Put your database URL here 
-sensorTable = "test.traffic data" #Change this to the name of your sensor data table 
+sensorTable = "traffic data" #Change this to the name of your sensor data table 
 
 def QueryToList(query): 
     queryData = [] 
@@ -37,7 +37,7 @@ def QueryDatabase() -> list:
         sensorTable = db[sensorTable] 
         print("Table:", sensorTable) 
         #We convert the cursor that mongo gives us to a list for easier iteration. 
-        timeCutOff = datetime.now() - timedelta(minutes=200) #TODO: Set how many minutes you allow 
+        timeCutOff = datetime.now() - timedelta(minutes=5) #Set how many minutes you allow 
 
         oldDocuments = QueryToList(sensorTable.find({"time":{"$gte":timeCutOff}})) 
         currentDocuments = QueryToList(sensorTable.find({"time":{"$lte":timeCutOff}})) 
@@ -45,26 +45,34 @@ def QueryDatabase() -> list:
         print("Current Docs:",currentDocuments) 
         print("Old Docs:",oldDocuments) 
 
-        #TODO: Parse the documents that you get back for the sensor data that you need 
+        #Parse the documents that you get back for the sensor data that you need 
 
         RoadA = 0
         RoadB = 0 
         RoadC = 0
 
-        for document in oldDocuments: 
-            RoadA += document['payload']['Traffic Sensor 91']
+
+        for document in oldDocuments:
+            if(list(document['payload'].keys())[2] == 'Traffic Sensor 91'):
+                RoadA += document['payload']['Traffic Sensor 91']
+            elif(list(document['payload'].keys())[2] == 'Traffic Sensor 92'):
+                RoadB += document['payload']['Traffic Sensor 92']
+            elif(list(document['payload'].keys())[2] == 'Traffic Sensor 93'):
+                RoadC += document['payload']['Traffic Sensor 93']
         
         RoadA = RoadA / len(oldDocuments)
-
-        for document in oldDocuments: 
-            RoadB += document['payload']['Traffic Sensor 92']
-        
         RoadB = RoadB / len(oldDocuments)
-
-        for document in oldDocuments: 
-            RoadC += document['payload']['Traffic Sensor 93']
-        
         RoadC = RoadC / len(oldDocuments)
+
+        #for document in oldDocuments: 
+            #RoadB += document['payload']['Traffic Sensor 92']
+        
+        #RoadB = RoadB / len(oldDocuments)
+
+        #for document in oldDocuments: 
+            #RoadC += document['payload']['Traffic Sensor 93']
+        
+        #RoadC = RoadC / len(oldDocuments)
 
         #Return that sensor data as a list 
         return [int(RoadA), int(RoadB), int(RoadC)] 

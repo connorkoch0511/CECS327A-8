@@ -64,16 +64,6 @@ def QueryDatabase() -> list:
         RoadB = RoadB / len(oldDocuments)
         RoadC = RoadC / len(oldDocuments)
 
-        #for document in oldDocuments: 
-            #RoadB += document['payload']['Traffic Sensor 92']
-        
-        #RoadB = RoadB / len(oldDocuments)
-
-        #for document in oldDocuments: 
-            #RoadC += document['payload']['Traffic Sensor 93']
-        
-        #RoadC = RoadC / len(oldDocuments)
-
         #Return that sensor data as a list 
         return [int(RoadA), int(RoadB), int(RoadC)] 
 

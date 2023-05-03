@@ -38,6 +38,10 @@ def ListenOnTCP(tcpSocket: socket.socket, socketAddress):
     if message: 
         serverData = GetServerData() 
 
+        print(f'Average time for Road A is {serverData[0]}')
+        print(f'Average time for Road B is {serverData[1]}')
+        print(f'Average time for Road C is {serverData[2]}')
+
         fastestHighway = min(serverData)
         letter = "A"
 
